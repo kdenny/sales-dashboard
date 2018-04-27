@@ -1,5 +1,7 @@
 # MassMutual Data Viz Recruitment
 
+## Submission by: Kevin Earl Denny
+
 This project is intended to evaluate MassMutual data visualization engineering candidates. The project contains a simple web app to be use as a starting point to build data visualizations.
 
 ## Instructions
