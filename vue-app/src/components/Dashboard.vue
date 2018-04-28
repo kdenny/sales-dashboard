@@ -19,7 +19,7 @@
           </div>
         </div>
         <div v-if="customerDashboard">
-          <tree_map :treeData="customerDashboard.segment" :height="225" :width="300"
+          <tree_map :treeData="customerDashboard" :height="225" :width="300"
                     style="display: inline-block; margin-left: -22px; position: relative; top: 70px;"
                     v-on:barclicked="barClicked" :selectedBar="selected['segment']"
           ></tree_map>

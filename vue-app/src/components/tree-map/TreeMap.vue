@@ -25,8 +25,7 @@ export default {
     treeData(newTree) {
       if (!this.selectedBar) {
         this.clearChart()
-        tretl(this.treeData)
-        this.renderChart()
+        this.parsedTree = tretl(this.treeData.segment)
         this.renderChart()
       } else {
         this.handleSelection()
@@ -35,7 +34,7 @@ export default {
   },
   mounted () {
     this.tooltip = d3.select(this.$el).append("div").attr("class", "toolTip-tree")
-    this.parsedTree = tretl(this.treeData)
+    this.parsedTree = tretl(this.treeData.segment)
     if (this.parsedTree) {
       this.renderChart()
     }
@@ -43,6 +42,7 @@ export default {
   methods: {
     clearChart() {
       this.svg.selectAll("g").remove()
+
     },
     renderChart () {
       var me = this
@@ -73,7 +73,6 @@ export default {
         .data(this.root.leaves())
         .enter().append("g")
         .on("click", function (d) {
-          console.log(d)
           if (d3.select(this).attr("class") !== 'leaf lactive' || !(d3.select(this).attr("class"))) {
             d3.select(this).attr("class","leaf lactive")
             me.cellClicked(d, this)
@@ -138,13 +137,10 @@ export default {
     },
     handleSelection () {
       var me = this
-      console.log(me.selectedBar)
       d3.selectAll('rect')
         .attr("class", function(d) {
           if (d) {
-            console.log(d)
             if (d.data) {
-              console.log(d)
               if (me.selectedBar) {
                 if (d.data.id === me.selectedBar) {
                   return "leaf lactive"
@@ -179,7 +175,6 @@ export default {
       return d.count
     },
     cellClicked (d, obh) {
-      console.log(d)
       let data = {
         field: 'segment',
         bar: {

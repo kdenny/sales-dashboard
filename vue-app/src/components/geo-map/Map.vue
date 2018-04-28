@@ -99,14 +99,11 @@ export default {
             .style("top", d3.event.pageY - 150 + "px")
             .style("display", "inline-block")
             .html((d.properties.name) + "<br>" + (d.properties.value) + " customers")
-//          me.doHover(d)
         })
         .on("mouseout", function(d){
-//          me.unhover()
           me.tooltip.style("display", "none")
         })
         .on("click", function(d) {
-          console.log(d3.select(this))
           if (d3.select(this).attr("class") =='state-path') {
             d3.select(this).attr("class", "active-map")
           }
@@ -195,7 +192,6 @@ export default {
       this.$emit('populations', me.populations)
     },
     barClicked: function(bar) {
-      console.log(bar)
       let data = {
         field: this.field,
         bar: {
