@@ -1,1 +1,4 @@
 env/
+vue-app/node_modules/
+vue-app/.idea/
+vue-app/dist/

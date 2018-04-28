@@ -141,28 +141,37 @@ export default {
       console.log(me.selectedBar)
       d3.selectAll('rect')
         .attr("class", function(d) {
-          if (d.data) {
+          if (d) {
             console.log(d)
-            if (me.selectedBar) {
-              if (d.data.id === me.selectedBar) {
-                return "leaf lactive"
+            if (d.data) {
+              console.log(d)
+              if (me.selectedBar) {
+                if (d.data.id === me.selectedBar) {
+                  return "leaf lactive"
+                } else {
+                  return "leaf off"
+                }
               } else {
-                return "leaf off"
+                return "leaf not"
               }
-            } else {
-              return "leaf not"
             }
           }
         })
         .attr("fill", function(d) {
-          if (me.selectedBar && d.data) {
-            if (d.data.id === me.selectedBar) {
-              return d.data.color
+          if (d) {
+            if (me.selectedBar && d.data) {
+              if (d.data.id === me.selectedBar) {
+                return d.data.color
+              } else {
+                return 'lightgray'
+              }
             } else {
-              return 'lightgray'
+              if (d.data) {
+                return d.data.color
+              } else {
+                return null
+              }
             }
-          } else {
-            return d.data.color
           }
         });
     },
@@ -177,7 +186,6 @@ export default {
           key: d.data.id
         }
       }
-//      d3.select(obh).attr("class","leaf active")
       this.$emit('barclicked', data)
     }
   }
